@@ -1,7 +1,7 @@
 package com.joaov.swedbank.playsite.implementations;
 
 import com.joaov.swedbank.playsite.IPlaysiteRepository;
-import com.joaov.swedbank.playsite.models.Playsite;
+import com.joaov.swedbank.playsite.models.IPlaysite;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,15 +9,15 @@ import java.util.List;
 
 @Repository
 public class PlaysiteRepositoryImpl implements IPlaysiteRepository {
-    List<Playsite> playsites = new ArrayList<>();
+    List<IPlaysite> playsites = new ArrayList<>();
 
     @Override
-    public void createPlaysite(Playsite playsite) {
+    public void createPlaysite(IPlaysite playsite) {
         playsites.add(playsite);
     }
 
     @Override
-    public List<Playsite> getAllPlaysites() {
+    public List<IPlaysite> getAllPlaysites() {
         return playsites;
     }
 
@@ -27,7 +27,7 @@ public class PlaysiteRepositoryImpl implements IPlaysiteRepository {
     }
 
     @Override
-    public Playsite getPlaysiteById(Integer id) {
+    public IPlaysite getPlaysiteById(Integer id) {
         return playsites.get(id);
     }
 }

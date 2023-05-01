@@ -5,7 +5,7 @@ import com.joaov.swedbank.kid.models.KidModel;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class Playsite {
+public abstract class GeneralPlaysite implements IPlaysite {
     Integer id;
     Integer capacity;
     List<Integer> playing;
@@ -13,22 +13,27 @@ public abstract class Playsite {
     Integer visitors;
     PlaysiteType type;
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public Integer getCapacity() {
         return capacity;
     }
 
+    @Override
     public Integer getVisitors() {
         return visitors;
     }
 
+    @Override
     public Integer getUtilization() {
         return (int) ((playing.size() *100.0f) / capacity);
     }
 
+    @Override
     public PlaysiteType getType() {
         return type;
     }
@@ -41,6 +46,7 @@ public abstract class Playsite {
         return kidInQueue.isPresent();
     }
 
+    @Override
     public void addKidToPlaysite(KidModel kid) throws Exception {
         if (isKidInPlaysite(kid.getId())) {
             throw new Exception("Kid already in site");
@@ -57,7 +63,8 @@ public abstract class Playsite {
 
         visitors++;
     }
-    public Optional<Integer> findKidByIndexInList (Integer kidId, List<Integer> list) {
+    @Override
+    public Optional<Integer> findKidByIndexInList(Integer kidId, List<Integer> list) {
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).equals(kidId)) {
                 return Optional.of(i);
@@ -65,6 +72,7 @@ public abstract class Playsite {
         }
         return Optional.empty();
     }
+    @Override
     public void removeKidFromPlaysite(Integer kidId) throws Exception {
         Optional<Integer> kidInPlaying = findKidByIndexInList(kidId, playing);
         if(kidInPlaying.isPresent()) {

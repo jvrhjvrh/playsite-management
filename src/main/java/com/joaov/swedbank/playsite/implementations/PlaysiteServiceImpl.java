@@ -27,7 +27,7 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
 
     @Override
     public PlaysiteDTO createPlaysite(PlaysiteForm form) {
-        Playsite playsite = switch (form.getType()) {
+        IPlaysite playsite = switch (form.getType()) {
             case SLIDE -> new SlidePlaysite(database.playSiteSize());
             case CAROUSEL -> new CarouselPlaysite(database.playSiteSize());
             case BALL_PIT -> new BallPitPlaysite(database.playSiteSize());
@@ -39,7 +39,7 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
 
     @Override
     public List<PlaysiteDTO> getAllPlaysites() {
-        List<Playsite> playsites = database.getAllPlaysites();
+        List<IPlaysite> playsites = database.getAllPlaysites();
         return playsites.stream().map(PlaysiteDTO::new).toList();
     }
 
@@ -69,7 +69,7 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
             kidForm.setWaitsInQueue(playsiteKidForm.getWaitsInQueue());
             kid = kidService.createKid(kidForm);
         }
-        Playsite playsite = database.getPlaysiteById(playsiteId);
+        IPlaysite playsite = database.getPlaysiteById(playsiteId);
 
         playsite.addKidToPlaysite(kid);
 
@@ -84,7 +84,7 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
     @Override
     public KidModel removeKidFromPlaysite(Integer kidId) throws Exception {
         KidModel kid = kidService.getOneKid(kidId);
-        Playsite playsite = database.getPlaysiteById(kid.getCurrentPlaySite());
+        IPlaysite playsite = database.getPlaysiteById(kid.getCurrentPlaySite());
         playsite.removeKidFromPlaysite(kid.getId());
         kid.setCurrentPlaySite(null);
         return kid;

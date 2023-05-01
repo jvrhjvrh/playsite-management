@@ -1,12 +1,12 @@
 package com.joaov.swedbank.playsite;
 
-import com.joaov.swedbank.playsite.models.Playsite;
+import com.joaov.swedbank.playsite.models.IPlaysite;
 
 import java.util.List;
 
 public interface IPlaysiteRepository {
-    void createPlaysite (Playsite playsite);
-    List<Playsite> getAllPlaysites();
+    void createPlaysite (IPlaysite playsite);
+    List<IPlaysite> getAllPlaysites();
     Integer playSiteSize();
-    Playsite getPlaysiteById(Integer id);
+    IPlaysite getPlaysiteById(Integer id);
 }

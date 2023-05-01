@@ -1,6 +1,6 @@
 package com.joaov.swedbank.playsite.dtos;
 
-import com.joaov.swedbank.playsite.models.Playsite;
+import com.joaov.swedbank.playsite.models.IPlaysite;
 import com.joaov.swedbank.playsite.models.PlaysiteType;
 
 public class PlaysiteDTO {
@@ -13,7 +13,7 @@ public class PlaysiteDTO {
     public PlaysiteDTO() {
     }
 
-    public PlaysiteDTO(Playsite playsite) {
+    public PlaysiteDTO(IPlaysite playsite) {
         id = playsite.getId();
         capacity = playsite.getCapacity();
         visitors = playsite.getVisitors();

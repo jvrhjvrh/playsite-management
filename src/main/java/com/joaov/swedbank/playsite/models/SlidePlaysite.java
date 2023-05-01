@@ -2,7 +2,7 @@ package com.joaov.swedbank.playsite.models;
 
 import java.util.ArrayList;
 
-public class SlidePlaysite extends Playsite {
+public class SlidePlaysite extends GeneralPlaysite {
     public SlidePlaysite(Integer id) {
         super.id = id;
         super.capacity = 3;

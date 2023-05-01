@@ -2,7 +2,7 @@ package com.joaov.swedbank.playsite.models;
 
 import java.util.ArrayList;
 
-public class DoubleSwingPlaysite extends Playsite{
+public class DoubleSwingPlaysite extends GeneralPlaysite {
     public DoubleSwingPlaysite(Integer id) {
         super.id = id;
         super.capacity = 2;

@@ -2,7 +2,7 @@ package com.joaov.swedbank.playsite.models;
 
 import java.util.ArrayList;
 
-public class BallPitPlaysite extends Playsite{
+public class BallPitPlaysite extends GeneralPlaysite {
     public BallPitPlaysite(Integer id) {
         super.id = id;
         super.capacity = 10;
