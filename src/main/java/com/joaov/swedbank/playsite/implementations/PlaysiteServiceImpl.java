@@ -1,7 +1,6 @@
 package com.joaov.swedbank.playsite.implementations;
 
 import com.joaov.swedbank.kid.IKidService;
-import com.joaov.swedbank.kid.dtos.KidForm;
 import com.joaov.swedbank.kid.models.KidModel;
 import com.joaov.swedbank.playsite.IPlaysiteRepository;
 import com.joaov.swedbank.playsite.IPlaysiteService;
@@ -62,12 +61,7 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
         if(playsiteKidForm.getId() != null) {
             kid = kidService.getOneKid(playsiteKidForm.getId());
         } else {
-            KidForm kidForm = new KidForm();
-            kidForm.setAge(playsiteKidForm.getAge());
-            kidForm.setName(playsiteKidForm.getName());
-            kidForm.setTicketNumber(playsiteKidForm.getTicketNumber());
-            kidForm.setWaitsInQueue(playsiteKidForm.getWaitsInQueue());
-            kid = kidService.createKid(kidForm);
+            kid = kidService.createKid(playsiteKidForm);
         }
         IPlaysite playsite = database.getPlaysiteById(playsiteId);
 

@@ -4,6 +4,7 @@ import com.joaov.swedbank.kid.IKidRepository;
 import com.joaov.swedbank.kid.IKidService;
 import com.joaov.swedbank.kid.dtos.KidForm;
 import com.joaov.swedbank.kid.models.KidModel;
+import com.joaov.swedbank.playsite.dtos.PlaysiteKidForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,20 @@ public class KidServiceImpl implements IKidService {
         KidModel kid = new KidModel(database.kidAmount(), form);
         database.addKid(kid);
         return kid;
+    }
+    @Override
+    public KidModel createKid(PlaysiteKidForm form) throws Exception {
+        if(form.getAge() == null || form.getName() == null || form.getTicketNumber() == null) {
+            throw new Exception("Kid's age, name and ticket number can't be null");
+        }
+
+        KidForm kidForm = new KidForm();
+        kidForm.setAge(form.getAge());
+        kidForm.setName(form.getName());
+        kidForm.setTicketNumber(form.getTicketNumber());
+        kidForm.setWaitsInQueue(form.getWaitsInQueue());
+
+        return createKid(kidForm);
     }
 
     @Override
