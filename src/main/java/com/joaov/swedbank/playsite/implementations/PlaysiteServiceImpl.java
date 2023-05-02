@@ -81,6 +81,9 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
     @Override
     public KidModel removeKidFromPlaysite(Integer kidId) throws Exception {
         KidModel kid = kidService.getOneKid(kidId);
+        if (kid.getCurrentPlaySite() == null) {
+            throw new Exception("Kid is not in any playsite");
+        }
         IPlaysite playsite = database.getPlaysiteById(kid.getCurrentPlaySite());
         playsite.removeKidFromPlaysite(kid.getId());
         kid.setCurrentPlaySite(null);
