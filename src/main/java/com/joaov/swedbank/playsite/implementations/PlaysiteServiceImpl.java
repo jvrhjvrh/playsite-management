@@ -65,11 +65,14 @@ public class PlaysiteServiceImpl implements IPlaysiteService {
         }
         IPlaysite playsite = database.getPlaysiteById(playsiteId);
 
-        playsite.addKidToPlaysite(kid);
-
         if (kid.getCurrentPlaySite() != null) {
+            if(kid.getCurrentPlaySite().equals(playsiteId)) {
+                throw new Exception("Kid already in site");
+            }
             removeKidFromPlaysite(kid.getId());
         }
+
+        playsite.addKidToPlaysite(kid);
 
         kid.setCurrentPlaySite(playsiteId);
         return kid;
